@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<style type="text/css"> 
+	  .window{width:35%;background-color:#d0def0;position:absolute;padding:2px;margin:5px;display:none;border-radius: 3px;z-index: 5;}
+	  .content{height:150px;background-color:#FFF;font-size:14px;overflow:auto;line-height: 25px;margin: 3px;padding: 3px;} 
+	  .title{padding:2px;color:#ffefd5;font-size:14px;text-align: center;} 
+	  .title img{float:right;} 
+	  input{width: 90px;height: 36px;border-radius: 5px;border: 1px solid #ccc;background-color: #ffefd5;color: #aaa;}
+	  .container1{position: relative;left: 10%;margin-top: 2%;margin-bottom: 2%;}
+      .leftView{position: relative;width: 418px;height: 418px;}
+      .smallImg{max-height: 100%;max-width: 100%;}
+      .mask{display: none;position: absolute;background: rgba(0,0,0,0.5);cursor: move;}
+      .rightView{position: absolute;left:458px;top:0;width:418px;height:418px;overflow:hidden;}
+      .bigImg{position: absolute;top:0;left:0;}
+      .explain{margin-left: 5%;color: #ccc;}
+	</style> 
+</head>
+<body>
+	<iframe src="public/header.html" id="header" scrolling="no"></iframe>
+	<section>
+		<div>
+			<div style="width:600px;margin-top:20px;margin-left: 10%;">
+			    <input type="button" value="居中窗口" id="btn_center" /> 
+			    <input type="button" value="居左下角" id="btn_left" /> 
+			    <input type="button" value="居右下角" id="btn_right" /> 
+			    <span class="explain">悬浮鼠标，淘宝放大镜效果</span>
+			</div>
+			<div class="window" id="center"> 
+			    <div id="title" class="title">
+			        <img src="http://pic002.cnblogs.com/images/2012/451207/2012100814082487.jpg" alt="关闭" />居中窗口
+			    </div> 
+			    <div class="content">草在结它的种子，风在摇它的叶子。我们站着，不说话，就十分美好。草在结它的种子，风在摇它的叶子。我们站着，不说话，就十分美好。草在结它的种子，风在摇它的叶子。我们站着，不说话，就十分美好。</div> 
+			</div> 
+
+			<div class="window" id="left"> 
+				<div id="title2" class="title"><img src="http://pic002.cnblogs.com/images/2012/451207/2012100814082487.jpg" alt="关闭" />居左窗口</div> 
+				<div class="content">我从没被谁知道，所以也没被谁忘记。在别人的回忆中生活，并不是我的目的。</div> 
+			</div> 
+			<div class="window" id="right"> 
+				<div id="title3" class="title"><img src="http://pic002.cnblogs.com/images/2012/451207/2012100814082487.jpg" alt="关闭" />居右窗口</div> 
+				<div class="content">生如蚁而美如神</div> 
+			</div>
+		</div>
+		<div>
+			<div class="container1">
+			    <div class="leftView">
+			        <div class="mask"></div>
+			        <img class="smallImg" src="image/pic.png" alt="缩小版"/>
+			    </div>
+			    <div class="rightView">
+			        <img class="bigImg" src="image/pic.png" alt="放大版"/>
+			    </div>
+			</div>
+		</div>
+	</section>
+	<iframe src="public/footer.html" id="footer" scrolling="no"></iframe>
+	<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $("#btn_center").click(function () {
+            popCenterWindow();
+        });
+
+        $("#btn_right").click(function () {
+            popRightWindow();
+        });
+        $("#btn_left").click(function () {
+            popLeftWindow();
+        });
+
+    }); 
+</script> 
+<script type="text/javascript">
+$(function(){
+    //计算放大镜的长宽
+    calculateMaskWH(); 
+    //监听鼠标mouseover事件
+    $('.leftView').on('mouseover',function(){
+        $('.mask').css('display','block');
+        $('.rightView').css('display','block');        
+    });
+    //监听鼠标mouseout事件    
+    $('.leftView').on('mouseout',function(){
+        $('.mask').css('display','none');
+        $('.rightView').css('display','none');
+    });
+    $('.leftView').on('mousemove',function(event){
+        //计算放大镜的left值和top值
+        var left=event.pageX-$(this).offset().left-$('.mask').width()/2;
+        var top=event.pageY-$(this).offset().top-$('.mask').height()/2;
+        //判断放大镜左右是否出界
+        if(left<0){
+            left=0
+        }else if(left>$(this).width()-$('.mask').width()){
+            left=$(this).width()-$('.mask').width();
+        }
+        //判断放大镜上下是否出现
+        if(top<0){
+            top=0;
+        }else if(top>$(this).height()-$('.mask').height()){
+            top=$(this).height()-$('.mask').height();
+        }
+        $('.mask').css({
+            left:left+'px',
+            top:top+'px'
+        });
+        //计算比例
+        var rate=$('.bigImg').width()/$('.leftView').width();
+        console.log(rate)
+        $('.bigImg').css({
+            left:-rate*left+'px',
+            top:-rate*top+'px'
+        });
+    });
+    //计算机放大镜的长宽
+    function calculateMaskWH(){
+         var width=$('.leftView').width()/$('.bigImg').width()*$('.rightView').width();
+         var height=$('.leftView').height()/$('.bigImg').height()*$('.rightView').height();
+         $('.mask').css({
+            "width":width,
+            "height":height
+         });
+    }
+});
+</script>
+<script type="text/javascript">
+    //获取窗口的高度 
+    var windowHeight; 
+    //获取窗口的宽度 
+    var windowWidth; 
+    //获取弹窗的宽度 
+    var popWidth; 
+    //获取弹窗高度 
+    var popHeight; 
+    function init(){ 
+       windowHeight=$(window).height(); 
+       windowWidth=$(window).width(); 
+       popHeight=$(".window").height(); 
+       popWidth=$(".window").width(); 
+    } 
+    //关闭窗口的方法 
+    function closeWindow(){ 
+        $(".title img").click(function(){ 
+            $(this).parent().parent().hide("slow"); 
+        }); 
+    } 
+
+    //定义弹出居中窗口的方法 
+    function popCenterWindow(){ 
+        init(); 
+        //计算弹出窗口的左上角Y的偏移量 
+        var popY=(windowHeight-popHeight)/2; 
+        var popX=(windowWidth-popWidth)/2; 
+        //alert('jihua.cnblogs.com'); 
+        //设定窗口的位置 
+        $("#center").css("top",popY).css("left",popX).slideToggle("slow");  
+        closeWindow(); 
+    } 
+
+    function popLeftWindow(){ 
+        init(); 
+        //计算弹出窗口的左上角Y的偏移量 
+        var popY=windowHeight-popHeight; 
+        //var popX=-(windowWidth-popWidth); 
+        //alert(popY); 
+        //设定窗口的位置 
+        $("#left").css("top",popY-50).css("left",50).slideToggle("slow"); 
+        closeWindow(); 
+    } 
+
+    function popRightWindow(){ 
+        init(); 
+        //计算弹出窗口的左上角Y的偏移量 
+        var popY=windowHeight-popHeight; 
+        var popX=windowWidth-popWidth; 
+        //alert(www.cnblogs.com/jihua); 
+        //设定窗口的位置 
+        $("#right").css("top",popY-50).css("left",popX-50).slideToggle("slow"); 
+        closeWindow(); 
+    } 
+</script>
+</body>
+</html>

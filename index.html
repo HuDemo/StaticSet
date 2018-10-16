@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表情包网站</title>
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<body>
+	<iframe src="public/header.html" id="header" scrolling="no"></iframe>
+	<section class="moveTop">
+		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide"><img class="banner" src="image/banner/banner2.png"></div>
+		        <div class="swiper-slide"><img class="banner" src="image/banner/banner2.png"></div>
+		        <div class="swiper-slide"><img class="banner" src="image/banner/banner2.png"></div>
+		    </div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
+		    
+		    <!-- 如果需要导航按钮 -->
+		    <div class="swiper-button-prev"></div>
+		    <div class="swiper-button-next"></div>
+		</div>
+		<div class="preview">
+			<div class="tab">
+				<div class="tabTitle"><a href="#" class="pointer">小标题</a></div>
+				<img src="image/logo.png">
+				<span>并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容。</span>
+			</div>
+			<div class="tab">
+				<div class="tabTitle"><a href="#" class="pointer">小标题</a></div>
+				<img src="image/logo.png">
+				<span>并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容。</span>
+			</div>
+			<div class="tab">
+				<div class="tabTitle"><a href="#" class="pointer">小标题</a></div>
+				<img src="image/logo.png">
+				<span>并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容，并不重要的内容。</span>
+			</div>
+		</div>
+	</section>
+	<iframe src="public/footer.html" id="footer" scrolling="no"></iframe>
+	<!-- <div style="width: 100%;height: 5px;margin-top: -5px;background: #292B29"></div> -->
+	<script src="js/swiper.min.js"></script>
+	<script>        
+		var mySwiper = new Swiper ('.swiper-container', {
+			direction: 'horizontal', // 垂直切换选项
+			loop: true, // 循环模式选项
+			autoplay: true,
+			// 如果需要分页器
+			pagination: {
+			  el: '.swiper-pagination',
+			  clickable: true,
+			},
+
+			// 如果需要前进后退按钮
+			navigation: {
+			  nextEl: '.swiper-button-next',
+			  prevEl: '.swiper-button-prev',
+			},
+		})        
+	</script>
+</body>
+</html>

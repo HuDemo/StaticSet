@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<style type="text/css">
+		.swiper-container {width: 209px;height: 209px;position: absolute;left: 50%;top: 50%;margin-left: 0px;margin-top: -150px;}
+    	.swiper-slide {background-position: center;background-size: cover;}
+    	.swiper-pagination-bullet-active{background-color: #add8e6;}
+	</style>
+</head>
+<body>
+	<iframe src="public/header.html" id="header" scrolling="no"></iframe>
+	<section>
+		<div class="searchArea">
+			<input name="search" class="search" type="text" placeholder="搜索...">
+			<img src="image/search.png" class="searchIcon">
+		</div>
+		<div class="container">
+			<div class="left guide-bar">
+		        <div class="panel-group">
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <h4 class="panel-title active" data-icon="about1">
+		                <a href="#">
+		                  标题1
+		                  <span class="right"></span>
+		                </a>
+		              </h4>
+		            </div>
+		            <div  class="panel-collapse collapse in">
+		              <ul class="panel-body">
+		                <li class="pro-item active companyPro"><a href="#">aaa</a></li>
+		                <li class="pro-item companyBand"><a href="#">bbb</a></li>
+		                <li class="pro-item companyCre"><a href="#">ccc</a></li>
+		              </ul> 
+		            </div>
+		          </div>  
+		          <div class="panel panel-default">
+		            <div class="panel-heading about2">
+		              <h4 class="panel-title" data-icon="about2">
+		                <a href="#">
+		                  标题2
+		                  <span class="right"></span>
+		                </a>
+		              </h4>
+		            </div>
+		            <div class="panel-collapse collapse in" >
+		              <ul class="panel-body">
+		                <li class="pro-item"><a href="#">ddd</a></li>
+		                <li class="pro-item"><a href="#">eee</a></li>
+		              </ul> 
+		            </div>
+		          </div> 
+		          <div class="panel panel-default">
+		            <div class="panel-heading about3">
+		              <h4 class="panel-title" data-icon="about3">
+		                <a href="#">
+		                  标题3
+		                  <span class="right"></span>
+		                </a>
+		              </h4>
+		            </div>
+		          </div> 
+		        </div>
+		      </div>
+		</div>
+		<div class="picBox">
+			<div class="swiper-container swiper1">
+			    <div class="swiper-wrapper">
+			        <div class="swiper-slide"><img class="setOne" src="image/setOne/setOne1.png"></div>
+			        <div class="swiper-slide"><img class="setOne" src="image/setOne/setOne2.png"></div>
+			        <div class="swiper-slide"><img class="setOne" src="image/setOne/setOne3.png"></div>
+			        <div class="swiper-slide"><img class="setOne" src="image/setOne/setOne4.png"></div>
+			    </div>
+			    <!-- 如果需要分页器 -->
+		    	<div class="swiper-pagination"></div>
+			</div>
+		</div>
+		
+	</section>
+	<iframe src="public/footer.html" id="footer" scrolling="no"></iframe>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/common.js"></script>
+	<script>   
+
+    var swiper = new Swiper('.swiper1', {
+      effect: 'cube',
+      loop: true,
+      grabCursor: true,
+      cubeEffect: {
+        shadow: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+       
+		// var mySwiper = new Swiper ('.swiper1', {
+		// 	effect : 'flip',
+		// })        
+	</script>
+</body>
+</html>
